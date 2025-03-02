@@ -5,7 +5,7 @@ import { getDb } from "@/lib/db"
 import { endpoints } from "@/lib/db/schema/endpoints"
 import { channels } from "@/lib/db/schema/channels"
 import { eq } from "drizzle-orm"
-import { Channel } from "@/lib/constants/channels"
+import { Channel } from "@/lib/channels"
 
 export const runtime = "edge"
 

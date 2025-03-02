@@ -31,15 +31,13 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { insertChannelSchema } from "@/lib/db/schema/channels"
-import type { NewChannel } from "@/lib/db/schema/channels"
+import type { ChannelFormData } from "@/lib/db/schema/channels"
 import { useToast } from "@/components/ui/use-toast"
-import { Channel, CHANNEL_LABELS, CHANNEL_TYPES } from "@/lib/constants/channels"
+import { Channel, CHANNEL_LABELS, CHANNEL_TYPES } from "@/lib/channels"
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
-import { DingtalkFields } from "@/components/channel-form/dingtalk-fields"
-import { WecomAppFields } from "@/components/channel-form/wecom-app-fields"
-import { TelegramFields } from "@/components/channel-form/telegram-fields"
 import { useRouter } from "next/navigation"
 import { createChannel, updateChannel } from "@/lib/services/channels"
+import { ChannelFormFields } from "./channel-form"
 
 interface ChannelDialogProps {
   mode?: "create" | "edit"
@@ -53,7 +51,7 @@ export function ChannelDialog({ mode = "create", channel }: ChannelDialogProps) 
   const [selectedType, setSelectedType] = useState(channel?.type)
   const router = useRouter()
 
-  const form = useForm<NewChannel>({
+  const form = useForm<ChannelFormData>({
     resolver: zodResolver(insertChannelSchema),
     defaultValues: {
       name: channel?.name || "",
@@ -67,7 +65,7 @@ export function ChannelDialog({ mode = "create", channel }: ChannelDialogProps) 
     },
   })
 
-  async function onSubmit(data: NewChannel) {
+  async function onSubmit(data: ChannelFormData) {
     console.log('onSubmit', data)
     try {
       setIsPending(true)
@@ -167,34 +165,14 @@ export function ChannelDialog({ mode = "create", channel }: ChannelDialogProps) 
                 </FormItem>
               )}
             />
-            {selectedType === CHANNEL_TYPES.WECOM_APP ? (
-              <WecomAppFields form={form} />
-            ) : selectedType === CHANNEL_TYPES.DINGTALK ? (
-              <DingtalkFields form={form} />
-            ) : selectedType === CHANNEL_TYPES.TELEGRAM ? (
-              <TelegramFields form={form} />
-            ) : (
-              <FormField
-                control={form.control}
-                name="webhook"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      Webhook URL
-                      <span className="text-red-500 ml-1">*</span>
-                    </FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="请输入 Webhook 地址" 
-                        className="font-mono"
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+            
+            {selectedType && (
+              <ChannelFormFields 
+                type={selectedType} 
+                form={form} 
               />
             )}
+            
             <DialogFooter>
               <Button variant="outline" onClick={() => setOpen(false)} type="button">
                 取消

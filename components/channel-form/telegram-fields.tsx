@@ -12,12 +12,12 @@ import {
   FormDescription,
 } from "@/components/ui/form"
 import { UseFormReturn } from "react-hook-form"
-import type { NewChannel } from "@/lib/db/schema/channels"
+import type { ChannelFormData } from "@/lib/db/schema/channels"
 import { useState } from "react"
 import { useToast } from "@/components/ui/use-toast"
 
 interface TelegramFieldsProps {
-  form: UseFormReturn<NewChannel>
+  form: UseFormReturn<ChannelFormData>
 }
 
 export function TelegramFields({ form }: TelegramFieldsProps) {

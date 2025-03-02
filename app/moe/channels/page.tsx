@@ -4,7 +4,7 @@ import { ChannelTable } from "@/components/channel-table"
 import { getDb } from "@/lib/db"
 import { channels } from "@/lib/db/schema/channels"
 import { eq } from "drizzle-orm"
-import type { Channel } from "@/lib/constants/channels"
+import type { Channel } from "@/lib/channels"
 
 export const runtime = "edge"
 

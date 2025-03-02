@@ -19,7 +19,7 @@ import {
 import { MoreHorizontal, Loader2 } from "lucide-react"
 import { useState, useEffect } from "react"
 import { ChannelDialog } from "@/components/channel-dialog"
-import { Channel, CHANNEL_LABELS } from "@/lib/constants/channels"
+import { Channel, CHANNEL_LABELS } from "@/lib/channels"
 import { useToast } from "@/components/ui/use-toast"
 import {
   AlertDialog,

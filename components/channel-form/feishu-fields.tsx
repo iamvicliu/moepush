@@ -1,21 +1,13 @@
-"use client"
-
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
 import { UseFormReturn } from "react-hook-form"
 import type { ChannelFormData } from "@/lib/db/schema/channels"
 
-interface DingtalkFieldsProps {
+interface FeishuFieldsProps {
   form: UseFormReturn<ChannelFormData>
 }
 
-export function DingtalkFields({ form }: DingtalkFieldsProps) {
+export function FeishuFields({ form }: FeishuFieldsProps) {
   return (
     <>
       <FormField
@@ -24,15 +16,11 @@ export function DingtalkFields({ form }: DingtalkFieldsProps) {
         render={({ field }) => (
           <FormItem>
             <FormLabel>
-              Webhook URL
+              Webhook 地址
               <span className="text-red-500 ml-1">*</span>
             </FormLabel>
             <FormControl>
-              <Input 
-                placeholder="请输入 Webhook 地址" 
-                className="font-mono"
-                {...field} 
-              />
+              <Input placeholder="https://open.feishu.cn/open-apis/bot/v2/hook/..." {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -43,9 +31,11 @@ export function DingtalkFields({ form }: DingtalkFieldsProps) {
         name="secret"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>签名密钥</FormLabel>
+            <FormLabel>
+              签名密钥
+            </FormLabel>
             <FormControl>
-              <Input placeholder="如果已配置加签，请输入签名密钥" {...field} />
+              <Input placeholder="可选，用于验证请求" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

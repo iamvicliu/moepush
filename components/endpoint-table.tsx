@@ -37,7 +37,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { STATUS_LABELS, STATUS_COLORS } from "@/lib/constants/endpoints"
-import { Channel } from "@/lib/constants/channels"
+import { Channel } from "@/lib/channels"
 import { EndpointExample } from "@/components/endpoint-example"
 import { useRouter } from "next/navigation"
 import { deleteEndpoint, toggleEndpointStatus, testEndpoint } from "@/lib/services/endpoints"

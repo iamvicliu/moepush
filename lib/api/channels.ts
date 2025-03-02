@@ -1,4 +1,4 @@
-import { Channel, NewChannel } from "@/lib/db/schema/channels"
+import { Channel, ChannelFormData } from "@/lib/db/schema/channels"
 
 const API_URL = "/api/channels"
 
@@ -8,7 +8,7 @@ export async function getChannels() {
   return res.json() as Promise<Channel[]>
 }
 
-export async function createChannel(data: Omit<NewChannel, "userId">) {
+export async function createChannel(data: Omit<ChannelFormData, "userId">) {
   const res = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -18,7 +18,7 @@ export async function createChannel(data: Omit<NewChannel, "userId">) {
   return res.json() as Promise<Channel>
 }
 
-export async function updateChannel(id: string, data: Partial<NewChannel>) {
+export async function updateChannel(id: string, data: Partial<ChannelFormData>) {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },

@@ -12,13 +12,12 @@ import {
 } from "@/components/ui/form"
 import { ChevronDown, ChevronUp } from "lucide-react"
 import { UseFormReturn } from "react-hook-form"
-import { NewEndpoint } from "@/lib/db/schema/endpoints"
-import { MessageTemplate, TemplateField } from "@/lib/constants/templates"
+import { MessageTemplate, TemplateField } from "@/lib/channels/base"
 import { getNestedValue, setNestedValue } from "@/lib/utils"
 import { FunctionSelector } from "@/components/function-selector"
 
 interface TemplateFieldsProps {
-  form: UseFormReturn<NewEndpoint>
+  form: UseFormReturn<any>
   template: MessageTemplate
 }
 
@@ -37,7 +36,7 @@ function FieldComponent({
         <Textarea
           value={value || ''}
           onChange={(e) => onChange(e.target.value)}
-          placeholder={`请输入${field.description}`}
+          placeholder={field.placeholder || `请输入${field.description}`}
           className="resize-none"
         />
       )
@@ -55,7 +54,7 @@ function FieldComponent({
         <Input
           value={value || ''}
           onChange={(e) => onChange(e.target.value)}
-          placeholder={`请输入${field.description}`}
+          placeholder={field.placeholder || `请输入${field.description}`}
         />
       )
   }
@@ -131,7 +130,7 @@ export function TemplateFields({ form, template }: TemplateFieldsProps) {
           <FormItem key={field.key}>
             <FormLabel className="flex items-center justify-between">
               <div>
-                {field.description}
+                <span className="[&_a]:text-blue-500 [&_a]:underline" dangerouslySetInnerHTML={{ __html: field.description || "" }} />
                 <span className="text-red-500 ml-1">*</span>
               </div>
               {isVariableSupported(field) && (
