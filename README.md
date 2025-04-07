@@ -88,6 +88,9 @@ pnpm run dev
 
 ## 部署
 
+### 视频版保姆级部署教程
+https://www.bilibili.com/video/BV1dtZBYnEUX/?p=2
+
 ### GitHub Actions 自动部署
 
 项目已配置 GitHub Actions 用于自动部署, 可以通过两种方式进行触发：
