@@ -6,6 +6,7 @@ import { WecomAppChannel } from "./wecom-app"
 import { TelegramChannel } from "./telegram"
 import { FeishuChannel } from "./feishu"
 import { DiscordChannel } from "./discord"
+import { BarkChannel } from "./bark"
 
 // 渠道类型常量
 export const CHANNEL_TYPES = {
@@ -15,6 +16,7 @@ export const CHANNEL_TYPES = {
   TELEGRAM: "telegram",
   FEISHU: "feishu",
   DISCORD: "discord",
+  BARK: "bark",
 } as const
 
 export type ChannelType = typeof CHANNEL_TYPES[keyof typeof CHANNEL_TYPES]
@@ -27,6 +29,7 @@ const channels: Record<ChannelType, BaseChannel> = {
   [CHANNEL_TYPES.TELEGRAM]: new TelegramChannel(),
   [CHANNEL_TYPES.FEISHU]: new FeishuChannel(),
   [CHANNEL_TYPES.DISCORD]: new DiscordChannel(),
+  [CHANNEL_TYPES.BARK]: new BarkChannel(),
 }
 
 // 获取所有渠道标签

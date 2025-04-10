@@ -34,6 +34,7 @@
 - Telegram 机器人
 - 飞书群机器人
 - Discord Webhook
+- Bark App
 
 ## 技术栈
 - **框架**: [Next.js](https://nextjs.org/) (App Router)
